@@ -1,40 +1,40 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    document.getElementById("year").textContent = new Date().getFullYear();
+    // Set Dynamic Year
+    const yearEl = document.getElementById("year");
+    if(yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+    }
 
     const sections = document.querySelectorAll("section");
     const navbar = document.querySelector("nav");
-    const navLinks = document.querySelectorAll("nav ul li a");
+    const navLinks = document.querySelectorAll(".nav-links a");
 
     /* ==============================
-       NAVBAR SCROLL ACTIVE
+       NAVBAR SCROLL ACTIVE & EFFETS
     ============================== */
-
     window.addEventListener("scroll", () => {
         let currentSection = "";
 
         sections.forEach(section => {
-            const sectionTop = section.offsetTop - 150;
+            const sectionTop = section.offsetTop - 120;
             const sectionHeight = section.offsetHeight;
 
-            if (window.scrollY >= sectionTop && 
-                window.scrollY < sectionTop + sectionHeight) 
-                {
+            if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
                 currentSection = section.getAttribute("id");
-                }
+            }
         });
 
-        /* Navbar background saat scroll */
+        /* Navbar background glassmorphism on scroll */
         if (window.scrollY > 50) {
             navbar.classList.add("scrolled");
         } else {
             navbar.classList.remove("scrolled");
         }
 
-        /* Nav link active */
+        /* Nav link active class switcher */
         navLinks.forEach(link => {
             link.classList.remove("active");
-
             if (link.getAttribute("href") === "#" + currentSection) {
                 link.classList.add("active");
             }
@@ -42,19 +42,25 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     /* ==============================
-       HAMBURGER MENU
+       HAMBURGER MENU LOGIC
     ============================== */
-
     const hamburger = document.querySelector(".hamburger");
-    const navMenu = document.querySelector("nav ul");
+    const navMenu = document.querySelector(".nav-links");
 
-    hamburger.addEventListener("click", () => {
-        navMenu.classList.toggle("active");
-    });
-    /* Close menu saat klik link */
-    navLinks.forEach(link => {
-        link.addEventListener("click", () => {
-            navMenu.classList.remove("active");
+    if (hamburger && navMenu) {
+        hamburger.addEventListener("click", () => {
+            // Animasi icon hamburger menjadi silang (X)
+            hamburger.classList.toggle("active");
+            // Memunculkan menu laci dari kanan
+            navMenu.classList.toggle("active");
         });
-    });
+
+        /* Tutup menu otomatis saat link diklik (Mobile Friendly) */
+        navLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                hamburger.classList.remove("active");
+                navMenu.classList.remove("active");
+            });
+        });
+    }
 });
