@@ -2,13 +2,13 @@
 
 Personal portfolio website built to showcase my projects and front-end development skills.
 
-[🌐 View Live Demo](https://farizmuhamad.github.io/portfolio/) · [🐛 Report Bug](https://github.com/farizmuhamad/farizmuhamad.github.io/issues)
+[🌐 View Live Demo](https://farizmuhamad.github.io) · [🐛 Report Bug]()
 
 ---
 
 ## 📸 Preview
 
-![Portfolio Preview](https://via.placeholder.com/800x400.png?text=Ganti+dengan+URL+Gambar+atau+Screenshot+Website)
+![Portfolio Preview]()
 
 ---
 
